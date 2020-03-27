@@ -1,0 +1,6 @@
+title: BioWDL Documentation Theme
+logo: /assets/img/logo.png
+description: A jekyll theme for the BioWDL docs.
+theme: biowdl-docs-theme
+zenodo: 128194846
+latest: v1.0.0

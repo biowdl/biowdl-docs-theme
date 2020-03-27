@@ -1,0 +1,247 @@
+---
+---
+
+@import "rouge-github";
+
+body {
+  background-color: #444;
+  color: #eee;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+details {
+  margin: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-bottom: 1px solid DarkSeaGreen;
+  background-color: black;
+}
+
+a, summary {
+  color: PowderBlue;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover, summary:hover {
+  color: LightSteelBlue ;
+  font-weight: bold;
+}
+
+.current {
+  color: DarkSeaGreen;
+  font-weight: bold;
+}
+
+table, pre {
+	display: block;
+	width: auto;
+	overflow-x: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	border-bottom: 1px solid #e5e5e5;
+	padding: 5px 10px;
+}
+
+th {
+  text-align: left;
+  color: DarkSeaGreen;
+  border-color: DarkSeaGreen;
+}
+
+dt {
+  color: DarkSeaGreen;
+  margin-top: 1em;
+}
+
+dt a, dt a:hover {
+    all: inherit;
+    cursor: pointer;
+}
+
+b, strong {
+  color: white;
+}
+
+hr {
+  background-color: DarkSeaGreen;
+  border: 0;
+  height: 2px;
+  margin: 0 0 20px;
+}
+
+small {
+	font-size: x-small;
+}
+
+code, pre {
+  color: #333;
+  background-color: #eee;
+}
+
+code {
+  background-color: #eee;
+  border-radius: 100px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+pre {
+	padding: 8px 15px;
+	width: auto;
+}
+
+pre code {
+ background-color: inherit;
+ border-radius: 0px;
+ padding-right: 0px;
+ padding-left: 0px;
+}
+
+blockquote {
+  background-color: black;
+  border-left: 5px solid DarkSeaGreen;
+  padding: 1px 0 1px 20px;
+  font-style: italic;
+  margin: 0;
+}
+
+ul {
+	margin: 5px 0 20px;
+}
+
+li {
+	margin-bottom: 5px;
+}
+
+.container {
+	display: grid;
+	grid-template-areas:
+		'logo header'
+		'nav main'
+		'footer footer';
+	grid-template-columns: 300px 705px;
+	grid-template-rows: minmax(100px, auto) 1fr auto;
+	grid-gap: 0px;
+	background-color: #222;
+	width: 1005px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	box-shadow: 0px 0px 2px 1px #222;
+}
+
+.header {
+	grid-area: header;
+	width: auto;
+	text-align: center;
+}
+
+.logo {
+	grid-area: logo;
+	margin:auto;
+}
+.logo img {
+	height: 100px;
+}
+
+.main {
+	grid-area: main;
+	padding: 10px;
+	background-color: #333;
+	border-top: solid 5px DarkSeaGreen;
+}
+
+.main img {
+    max-width: 100%;
+}
+
+.nav {
+	grid-area: nav;
+	padding: 10px;
+	background-color: #222;
+	border-top: solid 5px DarkSeaGreen;
+}
+
+.innernav {
+	position: sticky;
+	top: 0;
+	max-height: 100vh;
+	overflow-y: auto;
+}
+
+.innernav details {
+  margin: 0px;
+}
+
+.innernav ul {
+  margin-left: 20px;
+  padding-left: 0px;
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-bottom: 0;
+}
+
+.footer {
+  grid-area: footer;
+  border-top: solid 5px DarkSeaGreen;
+  font-size: small;
+  text-align: center;
+  padding: 10px;
+}
+
+.totop {
+	position: fixed;
+	z-index: 999;
+	bottom: 20px;
+	right: 30px;
+	background-color: PowderBlue;
+	padding: 15px;
+	color: #222;
+	box-shadow: 0px 0px 2px 1px #222;
+	border-radius: 100px;
+}
+
+.totop:hover {
+	background-color: LightSteelBlue;
+	font-weight: initial;
+}
+
+@media print, screen and (max-width: 1080px) {
+  .container {
+	grid-template-areas:
+		'logo header'
+		'nav nav'
+		'main main'
+		'footer footer';
+	grid-template-columns: 70px 1fr;
+	grid-template-rows: minmax(100px, auto) auto 1fr auto;
+	width: 99%;
+  }
+  
+  .header {
+	width: initial;
+  }
+  
+  .innernav {
+	position: static;
+	max-height: initial;
+	overflow-y: initial;
+  }
+  
+  .main {
+	  width: -moz-available
+  }
+}
+

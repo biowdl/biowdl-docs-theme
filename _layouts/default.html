@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" size="16x16" href="{{"assets/img/16.png" | relative_url }}">
+    <link rel="icon" type="image/png" size="32x32" href="{{"assets/img/32.png" | relative_url }}">
+
+    {% seo %}
+  
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  </head>
+  <body>
+  
+  <!-- assign some variables -->
+  {% assign pageVersion = page.url | remove_first: '/' | split: '/' | first %}
+  {% assign tagline = site.github.project_tagline | split: ' Category:' | first %}
+  
+  <a href="#">
+    <div class="totop">
+      &#11165;
+    </div>
+  </a>
+  <div class="container">
+
+    <div class="logo">
+      <a href="/"><img src="{{site.logo | relative_url}}" alt="Logo" /></a>
+    </div>
+
+    <div class="header">
+      <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+      <p>{{ site.description | default: tagline }}</p>
+    </div>
+
+	<div class="nav">
+	
+      {% if site.zenodo %}
+      <p align="center">
+        <a href="https://zenodo.org/badge/latestdoi/{{site.zenodo}}"><img src="https://zenodo.org/badge/{{site.zenodo}}.svg" alt="DOI"></a><br />
+        <small>DOI for latest release according to Zenodo.</small>
+      </p>
+      {% endif %}
+		
+      {% if site.github.is_project_page %}
+      <p>
+        Currently viewing version: <b>{{pageVersion}}</b><br />
+        <small>
+          <a href="{{ site.github.repository_url | append: "/releases/tag/" | append: pageVersion }}">Downloads</a>
+		  &mdash;
+		  <a href="{{ site.github.repository_url }}">Source code</a>
+		  &mdash;
+		  <a href="{{ "/" | absolute_url }}">View latest ({{site.latest}})</a>
+        </small>
+      </p>
+      {% endif %}
+		
+      <div class="innernav">
+        <details open>
+          <summary>Pages</summary>
+		  <ul>
+            {% if site.github.is_user_page %}
+            {% for innerPage in site.pages %}
+            {% if innerPage.title %}
+            <li>
+              {% if page.url == innerPage.url %}
+              <a class="current" href="{{ innerPage.url }}">{{ innerPage.title }}</a>
+              {% else %}
+              <a href="{{ innerPage.url }}">{{ innerPage.title }}</a>
+              {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+		
+            {% if site.github.is_project_page %}
+            {% for innerPage in site.pages %}
+            {% assign innerPageVersion = innerPage.url | remove_first: '/' | split: '/' | first %}
+            {% if innerPage.title and innerPageVersion == pageVersion %}
+            <li>
+              {% if page.url == innerPage.url %}
+              <a class="current" href="/{{ site.github.project_title }}{{ innerPage.url }}">{{ innerPage.title }}</a>
+              {% else %}
+              <a href="/{{ site.github.project_title }}{{ innerPage.url }}">{{ innerPage.title }}</a>
+              {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+		    {% endif %}
+		  </ul>
+        </details>
+	  
+        <details open>
+          <summary>Table of contents</summary>
+		  <!--https://github.com/allejo/jekyll-toc-->
+		  {% include toc.html html=content class="content" %}
+        </details>
+		
+		{% if site.github.is_project_page or 1 %}
+        <details>
+          <summary> All versions </summary>
+          <!-- gather versions -->
+          {% assign versions = '' | split: '' %} <!-- make an array -->
+          {% for innerPage in site.pages %}
+            {% if innerPage.title %}
+              {% assign innerPageVersion = innerPage.url | remove_first: '/' | split: '/' | first %}
+              {% unless versions contains innerPageVersion %}
+                {% assign version = innerPageVersion | split: '@@@' %}
+                {% assign versions = versions | concat: version %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+          {% assign versions = versions | sort_natural %}
+
+          <ul>
+            {% for version in versions %}
+            <li>
+              {% if version == pageVersion %}
+              <a class="current" href="{{version | relative_url }}">{{version}}</a>
+              {% else %}
+              <a href="{{version | relative_url }}">{{ version }}</a>
+              {% endif %}
+			  {% if version == site.latest %}
+			  (latest)
+			  {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </details>
+		{% endif %}
+		
+        </div>
+      </div>
+	  
+      <div class="main">
+	  
+        {% if site.github.is_project_page %}
+	    <!-- version warnings -->
+        {% if pageVersion == 'develop' %}
+        <blockquote>
+          <p>
+            <b>This is not a stable version!</b><br />
+            You are currently viewing the documentation for a development
+            version. It is not guaranteed that this documentation is up to
+            date. Things will likely change without announcement or
+            versioning incrementation.
+
+            If there is no other documentation available, there are likely no
+            releases available for this repository. The content is,
+            therefore, likely still in development and not production
+            ready. Use at your own risk!
+          </p>
+        </blockquote>
+        {% endif %}
+        {% unless pageVersion == site.latest %}
+        <blockquote>
+          <p>
+            Please be aware that the page you are currently viewing is not
+            for the latest available version!
+          </p>
+        </blockquote>
+        {% endunless %}
+        {% endif %}
+		
+        {{ content }}
+      </div>
+	  
+      <div class="footer">
+        <i>Copyright {{ 'now' | date: "%Y" }} Sequencing Analysis Support Core - Leiden University Medical Center</i><br />
+        Hosted on GitHub Pages
+      </div>
+    </div>
+
+  <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
