@@ -15,7 +15,6 @@
   
   <!-- assign some variables -->
   {% assign pageVersion = page.url | remove_first: '/' | split: '/' | first %}
-  {% assign tagline = site.github.project_tagline | split: ' Category:' | first %}
   
   <a href="#">
     <div class="totop">
@@ -30,7 +29,7 @@
 
     <div class="header">
       <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
-      <p>{{ site.description | default: tagline }}</p>
+      <p>{{ site.description | default: site.github.project_tagline | split: ' Category:' | first }}</p>
     </div>
 
 	<div class="nav">
