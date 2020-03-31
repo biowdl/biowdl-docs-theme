@@ -3,37 +3,53 @@
 
 @import "rouge-github";
 
+.highlight * {
+  color: black;
+}
+
+:root {
+  --page-background-color: #555;
+  --menu-background-color: #333;
+  --content-background-color: #424242;
+  --header-color: white;
+  --text-color: #eee;
+  --clickable-color: PowderBlue;
+  --clickable-hover-color: LightSteelBlue;
+  --accent-color: DarkSeaGreen;
+  --shadow-color: #333;
+}
+
 body {
-  background-color: #444;
-  color: #eee;
+  background-color: var(--page-background-color);
+  color: var(--text-color);
   font-family: Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: white;
+  color: var(--header-color);
 }
 
 details {
   margin: 5px;
   margin-bottom: 10px;
   padding: 5px;
-  border-bottom: 1px solid DarkSeaGreen;
-  background-color: black;
+  border-bottom: 3px solid var(--accent-color);
+  background-color: var(--menu-background-color);
 }
 
 a, summary {
-  color: PowderBlue;
+  color: var(--clickable-color);
   cursor: pointer;
   text-decoration: none;
 }
 
 a:hover, summary:hover {
-  color: LightSteelBlue ;
+  color: var(--clickable-hover-color);
   font-weight: bold;
 }
 
 .current {
-  color: DarkSeaGreen;
+  color: var(--accent-color);
   font-weight: bold;
 }
 
@@ -50,18 +66,18 @@ table {
 }
 
 th, td {
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid var(--text-color);
 	padding: 5px 10px;
 }
 
 th {
   text-align: left;
-  color: DarkSeaGreen;
-  border-color: DarkSeaGreen;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 dt {
-  color: DarkSeaGreen;
+  color: var(--accent-color);
   margin-top: 1em;
 }
 
@@ -71,11 +87,11 @@ dt a, dt a:hover {
 }
 
 b, strong {
-  color: white;
+  color: var(--header-color);
 }
 
 hr {
-  background-color: DarkSeaGreen;
+  background-color: var(--accent-color);
   border: 0;
   height: 2px;
   margin: 0 0 20px;
@@ -86,12 +102,11 @@ small {
 }
 
 code, pre {
-  color: #333;
-  background-color: #eee;
+  color: var(--content-background-color);
+  background-color: var(--text-color);
 }
 
 code {
-  background-color: #eee;
   border-radius: 100px;
   padding-right: 5px;
   padding-left: 5px;
@@ -110,8 +125,8 @@ pre code {
 }
 
 blockquote {
-  background-color: black;
-  border-left: 5px solid DarkSeaGreen;
+  background-color: var(--menu-background-color);
+  border-left: 5px solid var(--accent-color);
   padding: 1px 0 1px 20px;
   font-style: italic;
   margin: 0;
@@ -134,12 +149,12 @@ li {
 	grid-template-columns: 300px 705px;
 	grid-template-rows: minmax(100px, auto) 1fr auto;
 	grid-gap: 0px;
-	background-color: #222;
+	background-color: var(--menu-background-color);
 	width: 1005px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
-	box-shadow: 0px 0px 2px 1px #222;
+	box-shadow: 0px 0px 2px 1px var(--shadow-color);
 }
 
 .header {
@@ -159,8 +174,8 @@ li {
 .main {
 	grid-area: main;
 	padding: 10px;
-	background-color: #333;
-	border-top: solid 5px DarkSeaGreen;
+	background-color: var(--content-background-color);
+	border-top: solid 5px var(--accent-color);
 }
 
 .main img {
@@ -169,9 +184,7 @@ li {
 
 .nav {
 	grid-area: nav;
-	padding: 10px;
-	background-color: #222;
-	border-top: solid 5px DarkSeaGreen;
+	border-top: solid 5px var(--accent-color);
 }
 
 .innernav {
@@ -183,11 +196,24 @@ li {
 
 .innernav details {
   margin: 0px;
+  padding: 0px;
+}
+
+.innernav summary {
+  color: var(--menu-background-color);
+  background-color: var(--clickable-color);
+  padding: 10px;
+  font-weight: bold;
+}
+
+.innernav summary:hover {
+  background-color: var(--clickable-hover-color);
 }
 
 .innernav ul {
   margin-left: 20px;
   padding-left: 0px;
+  padding-right: 5px;
   list-style-type: disc;
   list-style-position: inside;
   margin-bottom: 0;
@@ -195,7 +221,7 @@ li {
 
 .footer {
   grid-area: footer;
-  border-top: solid 5px DarkSeaGreen;
+  border-top: solid 5px var(--accent-color);
   font-size: small;
   text-align: center;
   padding: 10px;
@@ -206,15 +232,15 @@ li {
 	z-index: 999;
 	bottom: 20px;
 	right: 30px;
-	background-color: PowderBlue;
+	background-color: var(--clickable-color);
 	padding: 15px;
-	color: #222;
-	box-shadow: 0px 0px 2px 1px #222;
+	color: var(--menu-background-color);
+	box-shadow: 0px 0px 2px 1px var(--shadow-color);
 	border-radius: 100px;
 }
 
 .totop:hover {
-	background-color: LightSteelBlue;
+	background-color: var(--clickable-hover-color);
 	font-weight: initial;
 }
 
